@@ -1,7 +1,22 @@
 <div class="headerVenta" >
-    <h2 mat-dialog-title>{{producto.c_nombre_producto}} - {{producto.c_detalle_primario_producto}}</h2>
-    <div *ngIf="productoAsociado.n_id_producto!==null" ><mat-checkbox class="example-margin" [(ngModel)]="productoAsociadoActivo" ><strong>{{productoAsociado.c_nombre_producto}} - {{productoAsociado.c_detalle_primario_producto}}</strong></mat-checkbox></div>
-    <button color="warn"  mat-raised-button (click)="cerrar()" >Cerrar</button>
+    <div class="container_header_options" >
+        <h2 mat-dialog-title>{{producto.c_nombre_producto}} - {{producto.c_detalle_primario_producto}}</h2>
+        <div *ngIf="productoAsociado.n_id_producto!==null" ><mat-checkbox class="example-margin" [(ngModel)]="productoAsociadoActivo" ><strong>{{productoAsociado.c_nombre_producto}} - {{productoAsociado.c_detalle_primario_producto}}</strong></mat-checkbox></div>
+        <button color="warn"  mat-raised-button (click)="cerrar()" >Cerrar</button>
+    </div>
+    <div class="container_header_options" >
+        <mat-card class="mat_card_stock">
+            <div class="container_inputs_stock" >
+                <input class="input_stock" matInput type="number" [(ngModel)]="producto.n_stock1" >
+                <input class="input_stock" matInput type="number" [(ngModel)]="producto.n_stock2" >
+                <input class="input_stock" matInput type="number" [(ngModel)]="producto.n_stock3" >
+            </div>
+            <mat-card-actions align="end" >
+                <button color="warn"  mat-raised-button (click)="cerrar()" >Guardar Stock</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+    
 </div>
 <br>
 <div class="body">

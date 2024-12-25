@@ -227,21 +227,34 @@ export class EditProductoComponent extends BaseComponent implements OnInit {
       this.producto.n_id_producto_asociado = valor;
     }
 
-    async guardar(){
+    guardar(){
       /* //console.log("producto => ", this.producto);
       ////console.log("before_id_grupo => ", this.before_id_grupo); */
       let b_actualizarGrupoPorcentaje:boolean = false;
       if(this.before_id_grupo !== this.producto.n_id_grupo){
         b_actualizarGrupoPorcentaje = true;
       }
-      if(await this.getRepetidoCodigoXGrupo()){
-        if(this.editar){
-          this.updateProducto(b_actualizarGrupoPorcentaje);
-        }else{
-          this.saveProducto();
+
+      this.validateBeforeSave(b_actualizarGrupoPorcentaje);
+      
+    }
+
+    async validateBeforeSave(b_actualizarGrupoPorcentaje : boolean){
+
+      if(this.producto.c_codigo_producto != null && this.producto.c_codigo_producto != ''){
+        if(await this.getRepetidoCodigoXGrupo()){
+          this.saveOrUpdate(b_actualizarGrupoPorcentaje);
         }
       }else{
-        //console.log("paso algo");
+        this.saveOrUpdate(b_actualizarGrupoPorcentaje);
+      }
+    }
+
+    saveOrUpdate(b_actualizarGrupoPorcentaje : boolean){
+      if(this.editar){
+        this.updateProducto(b_actualizarGrupoPorcentaje);
+      }else{
+        this.saveProducto();
       }
     }
 

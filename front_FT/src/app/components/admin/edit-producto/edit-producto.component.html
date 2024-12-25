@@ -1,8 +1,8 @@
-<h2 mat-dialog-title>Edición {{producto.c_nombre_producto}} Estado 
-  <button *ngIf="producto.n_activo == 1" mat-fab color="accent" type="button" (click)="changeActivo()" >
+<h2 mat-dialog-title>Edición {{producto.c_nombre_producto}} 
+  <button *ngIf="producto.n_activo == 1" mat-fab color="accent" type="button" (click)="changeActivo()" matTooltip="ACTIVO" >
       <mat-icon color="accent" >fiber_manual_record</mat-icon> 
   </button>
-  <button *ngIf="producto.n_activo == 0" mat-fab color="warn" type="button" (click)="changeActivo()" >
+  <button *ngIf="producto.n_activo == 0" mat-fab color="warn" type="button" (click)="changeActivo()" matTooltip="INACTIVO" >
     <mat-icon color="warn" >fiber_manual_record</mat-icon> 
   </button> 
 </h2>

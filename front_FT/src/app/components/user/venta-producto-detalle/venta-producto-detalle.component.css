@@ -2,9 +2,6 @@
   padding: 0px !important;
 }
 .headerVenta{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   margin: 0 !important;
   padding: 18px 24px 18px 24px;
   background-color: #C2185B;
@@ -28,12 +25,6 @@
   padding: 0 24px 24px 24px;
 }
 
-/* h2 {
-  margin: 0 !important;
-  padding: 18px 24px 18px 24px;
-  background-color: #C2185B;
-  color: #fff;
-} */
 .container_cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr); /* 4 columnas por fila */
@@ -70,4 +61,34 @@
 .input:focus {
   border-color: #007bff;
   box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.container_header_options{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 !important;
+}
+
+.input_stock {
+  padding: 5px;
+  border: 2px solid #ffffff;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #ffffff;
+  outline: none;
+}
+
+.input_stock:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.mat_card_stock{
+  width: 100%;
+  background-color: #C2185B;
+}
+.container_inputs_stock{
+  width: 100%;
+  display: flex;
 }

@@ -288,6 +288,22 @@ export class VentaProductoDetalleComponent extends BaseComponent  implements OnI
     this.dialogRef.close({flag: false, data: null})
   }
 
+  saveStockTmp(){
+    let parametro = {
+      n_id_producto : this.producto.n_id_producto,
+      n_stock1 : this.producto.n_stock1,
+      n_stock2 : this.producto.n_stock2,
+      n_stock3: this.producto.n_stock3
+    }
+    this.productoService.saveStockTmp(parametro,{}).subscribe( res => {
+      if(res.status){
+        this.openSnackBar("GUARDADO CORRECTAMENTE", 2500);
+      }else{
+        this.openSnackBar("OCURRIO ALGO", 2500);
+      }
+    });
+  }
+
 
 
 
