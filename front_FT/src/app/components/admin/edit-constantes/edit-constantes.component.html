@@ -1,0 +1,39 @@
+<h2 mat-dialog-title>Edición {{constante.c_valor_constante}}</h2>
+<br>
+<div class="body">
+  <form class="example-container" #newForm="ngForm" (ngSubmit)="guardar()">
+    <div mat-dialog-content class="contenedor">
+
+    <mat-form-field >
+        <input matInput placeholder="ID" name="c_valor_id_constante" #c_valor_id_constante="ngModel" [(ngModel)]="constante.c_valor_id_constante" maxlength="250" [readonly]="editar"
+            required />
+        <!-- <mat-hint class="error" *ngIf="tipoMedida.c_nombre_tipo_medidas.length<3">debe tener mínimo de 3 dígitos</mat-hint> -->
+    </mat-form-field>  
+
+    <mat-form-field >
+        <input matInput placeholder="Nombre" name="c_valor_constante" #c_valor_constante="ngModel" [(ngModel)]="constante.c_valor_constante" maxlength="250"
+             required />
+        <!-- <mat-hint class="error" *ngIf="tipoMedida.c_nombre_tipo_medidas.length<3">debe tener mínimo de 3 dígitos</mat-hint> -->
+    </mat-form-field>  
+
+      <mat-form-field >
+        <input matInput placeholder="Descripción" name="c_descripcion_constante" #c_descripcion_constante="ngModel" [(ngModel)]="constante.c_descripcion_constante" maxlength="250"
+          minlength="3"  />
+        <!-- <mat-hint class="error" *ngIf="tipoMedida.c_descripcion_tipo_medida.length<3">debe tener mínimo de 3 dígitos</mat-hint> -->
+      </mat-form-field>  
+
+    </div>
+    <div mat-dialog-actions>
+  
+      <button button mat-stroked-button color="primary" type="submit" 
+        [disabled]="!newForm.form.valid" >
+        <mat-icon>save</mat-icon>
+        <span>Guardar</span>
+      </button>
+      <button button mat-stroked-button color="error" type="button" style="margin-left: 8px;" (click)="cerrar()">
+        <mat-icon>close</mat-icon>
+        <span style="margin-left: 4px;">Cerrar</span>
+      </button>
+    </div>
+  </form>
+</div>

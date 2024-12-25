@@ -1,0 +1,33 @@
+<div class="headerVenta" >
+    <h2 mat-dialog-title>Ventas  </h2>
+    <span ><button  class="titlle_venta"  mat-button >Total de Venta {{total}}</button></span> 
+    <button mat-raised-button color="warn" (click)="borrarVenta()" >Borrar Venta Total</button>
+</div>
+<br>
+<div class="body">
+    <div class="container_cards" >
+            <div *ngFor="let g of ventaMomentoService.producotsVenta">
+                <mat-card class="card_grupo">
+                    <mat-card-header>
+                    <div mat-card-avatar class="example-header-image"></div>
+                    <!-- <mat-card-title>NOMBRE DEL PRODUCTO: {{g.c_nombre_producto}}</mat-card-title> -->
+                    <mat-card-title>{{g.nombre}} </mat-card-title>
+                    <mat-card-title>{{g.detalle}}</mat-card-title>
+                    <mat-card-title>{{g.repeticiones}} - {{g.cantidad}}</mat-card-title>
+                    <mat-card-title ><button class="precio_momento" mat-button>{{g.valor * g.repeticiones}}</button></mat-card-title>
+                    <mat-card-title class="repeticiones" >
+                        Repeticiones:
+                        &nbsp;
+                        <input class="input" matInput type="number" [(ngModel)]="g.repeticiones" (blur)="actualizarMonto()" >
+                    </mat-card-title>
+                    </mat-card-header>
+                    <mat-card-actions>
+                        <button mat-button color="warn" (click)="eliminarProducto(g)" ><mat-icon >delete</mat-icon>Borrar</button>
+                    </mat-card-actions>
+                    <mat-card-subtitle>
+                        <button mat-raised-button color="accent" *ngIf="g.par" >VENTA PAR</button>
+                    </mat-card-subtitle>
+                </mat-card>
+            </div>
+    </div>
+</div>

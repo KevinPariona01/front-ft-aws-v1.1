@@ -1,0 +1,67 @@
+<app-inicio>
+    <div class="contenedorBody" >
+        <h2> CAMBIAR PORCENTAJE POR GRUPO</h2>
+        <mat-card>
+            <div class="container_filters" >
+                <mat-form-field class="field_filter" >
+                    <input matInput placeholder="Buscar" (keyup)="applyFilter($event)">
+                    <mat-icon matSuffix>search</mat-icon>
+                </mat-form-field>
+                <mat-form-field  class="field_filter">
+                    <mat-label>Grupo</mat-label>
+                    <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto" >
+                    <button color="basic" matSuffix mat-button  (click)="clearCampo()">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+                    <mat-option *ngFor="let lista_grupos of filteredOptions | async" [value]="lista_grupos" (click)="seleccionarGrupo(lista_grupos.n_id_grupo)" >
+                        {{lista_grupos.c_nombre_grupo}}
+                    </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+            </div>
+        <table mat-table [dataSource]="tablaGrupos" matSort class="mat-elevation-z8">
+
+            <ng-container matColumnDef="c_nombre_grupo">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
+                <td mat-cell *matCellDef="let element"> {{element.c_nombre_grupo}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="c_nombre_distribucion_tipo_medida">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Distribucion </th>
+                <td mat-cell *matCellDef="let element"> {{element.c_nombre_distribucion_tipo_medida}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="f_valor_porcentaje">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Porcentaje </th>
+                <td mat-cell *matCellDef="let element"> 
+                    <input class="input"  matInput type="number"  [(ngModel)]="element.f_valor_porcentaje" />
+                    &nbsp;
+                    <button mat-mini-fab color="basic" matSuffix [ngClass]="{'varios':element.hay_valores_diferentes, 'no_varios':!element.hay_valores_diferentes }" (click)="cambiarPorcentaje(element)"  >
+                        <mat-icon>update</mat-icon>
+                    </button>
+                 </td>
+            </ng-container>
+
+            <ng-container matColumnDef="f_valor_porcentaje_max">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Mayor Porcentaje </th>
+                <td mat-cell *matCellDef="let element"> {{element.f_valor_porcentaje_max}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="f_valor_porcentaje_min">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Menor Porcentaje </th>
+                <td mat-cell *matCellDef="let element"> {{element.f_valor_porcentaje_min}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <ng-template let-row matRowDef cdkVirtualFor [matRowDefColumns]="displayedColumns">
+            <tr mat-row></tr>
+
+            </ng-template>
+
+        </table>
+        <mat-paginator [pageSizeOptions]="pagin" showFirstLastButtons></mat-paginator>
+        </mat-card>
+    </div>
+</app-inicio>
+<!-- <ngx-spinner type="ball-spin-clockwise" [fullScreen] = "false" color = "#fff"><p style="color: white" > Cargando... </p></ngx-spinner> -->

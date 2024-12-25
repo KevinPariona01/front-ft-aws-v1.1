@@ -1,0 +1,86 @@
+.sidenav-container {
+    height: 100%;
+    
+  }
+  .example-fill-remaining-space {
+    flex: 1 1 auto;
+  }
+  .imglogo1{
+    width: 200px;
+    margin-left: 2px;
+    height: auto;
+  }
+  .imglogo2{
+    width: 35px;
+    height: auto;
+    margin-left: 12px;
+  }
+  .imglogo3{
+    width: 25px;
+    height: auto;
+    margin-left: 12px;
+  }
+
+  .mat-toolbar.mat-primary{
+    color: white;
+  }
+
+  .sidenav{
+    width: 30%;
+  }
+
+  .logo{
+    display: flex;
+    justify-content: center;
+    flex-wrap:wrap;
+    margin-top: 25%;
+  }
+  
+  .barra {
+    display: flex;
+    justify-content: center;
+    color: #fff;
+    /* background: rgb(3,59,113);
+    background: linear-gradient(0deg, rgba(3,59,113,1) 0%, rgba(4,73,141,1) 46%, rgba(4,79,152,1) 100%); */
+    /* background: rgb(0,35,95);
+    background: linear-gradient(0deg, rgba(0,35,95,1) 0%, rgba(4,73,141,1) 40%, rgba(76,116,190,1) 100%); */
+  }
+  mat-icon{
+    margin-right: 7px;
+  }
+
+  mat-panel-title{
+    align-items: center;
+  }
+
+  .select{
+    background-color: #e0e0e0;
+  }
+
+  .mat-menu-item-submenu-trigger::after {
+    border-style: none;
+  }
+
+  .circulo {
+    width: 5px;
+    height: 5px;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    background: #5cb85c;
+}
+
+.checkView{
+  color: blue; 
+  font-size: 24px; 
+  margin: 0px 5px 0px 0px;
+}
+
+.checkView2{
+  margin: 0px 14px 0px 0px;
+}
+
+.bimbo{
+  font-size: 16px;
+  font-style: italic;
+}

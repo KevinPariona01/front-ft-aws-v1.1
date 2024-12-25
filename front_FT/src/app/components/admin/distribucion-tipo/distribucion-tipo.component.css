@@ -1,0 +1,55 @@
+.contenedorBody {
+    margin: 1%;
+} 
+table{
+    width: 100%;
+}
+.mat-column-editar{
+  width: 5%;
+}
+.mat-column-c_nombre_distribucion_tipo_medida{
+  width: 20%;
+}
+.mat-column-c_nombre_tipo_medida{
+  width: 20%;
+}
+.mat-column-f_distribucion_tipo_medida{
+  width: 10%;
+}
+.mat-column-c_descripcion_distribucion_tipo_medida{
+  width: 20%;
+}
+.mat-column-n_orden{
+  width: 20%;
+}
+.mat-column-eliminar{
+  width: 5%;
+}
+td.mat-footer-cell:last-of-type, td.mat-cell:last-of-type, th.mat-header-cell:last-of-type{
+  padding-right: 6px;
+}
+
+td.mat-cell:first-of-type, td.mat-footer-cell:first-of-type, th.mat-header-cell:first-of-type{
+  padding-left: 6px;
+}
+.input {
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #555;
+  outline: none;
+  max-width: 50px;
+}
+
+.input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+.container_filters{
+  padding-bottom: 2%;
+}
+.field_filter{
+  width: 30%;
+  margin-right: 2%;
+}

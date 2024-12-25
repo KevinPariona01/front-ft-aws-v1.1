@@ -1,0 +1,84 @@
+<app-inicio>
+    <div class="contenedorBody" >
+        <h2> DISTRIBUCIÓN DE LAS MEDIDAS</h2>
+        <mat-card>
+            <div class="container_filters" >
+                <mat-form-field class="field_filter" >
+                    <input matInput placeholder="Buscar" (keyup)="applyFilter($event)">
+                    <mat-icon matSuffix>search</mat-icon>
+                </mat-form-field>
+                <mat-form-field  class="field_filter">
+                    <mat-label>Tipo de Medida</mat-label>
+                    <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto" >
+                    <button color="basic" matSuffix mat-button  (click)="clearCampo()">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+                    <mat-option *ngFor="let lista_medida of filteredOptions | async" [value]="lista_medida" (click)="seleccionarTipoMedida(lista_medida.n_id_tipo_medida)" >
+                        {{lista_medida.c_nombre_tipo_medida}}
+                    </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+            </div>
+        <table mat-table [dataSource]="tablaDistribucionTipoMedida" matSort class="mat-elevation-z8">
+
+            <ng-container matColumnDef="editar">
+                <th mat-header-cell *matHeaderCellDef> <button matTooltip="insertar"  mat-icon-button (click)="editarTipoMedida(null)" >
+                    <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
+                </button> </th>
+                <td mat-cell *matCellDef="let element">
+                <button mat-icon-button matTooltip="editar"  color="primary" (click)="editarTipoMedida(element)" >
+                    <mat-icon aria-label="Example icon-button with a heart icon">edit</mat-icon>
+                </button>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="c_nombre_distribucion_tipo_medida">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
+                <td mat-cell *matCellDef="let element"> {{element.c_nombre_distribucion_tipo_medida}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="c_nombre_tipo_medida">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Tipo </th>
+                <td mat-cell *matCellDef="let element"> {{element.c_nombre_tipo_medida}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="f_distribucion_tipo_medida">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Valor </th>
+                <td mat-cell *matCellDef="let element"> {{element.f_distribucion_tipo_medida}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="c_descripcion_distribucion_tipo_medida">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Descripcion </th>
+                <td mat-cell *matCellDef="let element"> {{element.c_descripcion_distribucion_tipo_medida}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="n_orden">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> ORDEN </th>
+                <td mat-cell *matCellDef="let element">
+                    <input class="input"  matInput type="number"  [(ngModel)]="element.n_orden" (blur)="cambiarOrdenDistribucionTipoMedida(element)" />
+                    &nbsp;
+                     </td>
+            </ng-container>
+
+            <ng-container matColumnDef="eliminar">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Eliminar </th>
+            <td mat-cell *matCellDef="let element">
+                <button matTooltip="eliminar"  mat-icon-button color="error" (click)="eliminar(element)">
+                <mat-icon aria-label="Example icon-button with a heart icon">delete</mat-icon>
+                </button>
+            </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <ng-template let-row matRowDef cdkVirtualFor [matRowDefColumns]="displayedColumns">
+            <tr mat-row></tr>
+
+            </ng-template>
+
+        </table>
+        <mat-paginator [pageSizeOptions]="pagin" showFirstLastButtons></mat-paginator>
+        </mat-card>
+    </div>
+</app-inicio>
+<!-- <ngx-spinner type="ball-spin-clockwise" [fullScreen] = "false" color = "#fff"><p style="color: white" > Cargando... </p></ngx-spinner> -->

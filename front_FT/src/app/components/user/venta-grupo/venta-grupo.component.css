@@ -1,0 +1,38 @@
+.example-card {
+    max-width: 300px;
+}
+.filter_grupo{
+  width: 100%;
+}
+.input_grupo{
+  
+  font-size: 24px;
+}
+.contenedorBody {
+  margin: 1%;
+} 
+.example-header-image {
+  background-size: cover;
+}
+.container_grupos{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 4 columnas por fila */
+    gap: 10px;
+    width: 100%;
+}
+.card_grupo{
+  height: 450px;
+}
+.card_grupo:hover{
+  background-color: #C2185B;
+  color: aliceblue;
+}
+.card_grupo:hover .descripcion_grupo {
+  color: aliceblue; /* Asegura que el subtítulo también tome el color */
+}
+.descripcion_grupo{
+  text-overflow: ellipsis;
+}
+.n_orden{
+  font-size: 24px;
+}

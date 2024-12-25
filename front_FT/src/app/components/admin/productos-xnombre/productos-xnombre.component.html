@@ -1,0 +1,54 @@
+<app-inicio>
+    <div class="contenedorBody" >
+        <h2>BUSCAR PRODUCTOS POR NOMBRE</h2>
+        <mat-card>
+            <div class="container_filters" >
+                <mat-form-field class="field_filter" >
+                    <input matInput placeholder="Buscar" name="nameFiltro" #nameFiltro="ngModel" [(ngModel)]="c_nombre_producto_filtro" (keyup)="validarMinimoLetrasFiltro()" >
+                    <mat-hint style="color:brown; font-size: 15px;" >ESCRIBA MÁS DE {{minNumeroLetrasFiltro}} LETRAS PARA LISTAR</mat-hint>
+                    <button color="basic" matSuffix mat-button (click)="limpiar()" ><mat-icon matSuffix>close</mat-icon></button>
+                </mat-form-field>
+            </div>
+            <div>
+                <section class="example-container mat-elevation-z8" tabindex="0">
+                    <table mat-table [dataSource]="tablaProducto" >
+
+                        <ng-container matColumnDef="c_nombre_producto">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
+                            <td mat-cell *matCellDef="let element" [style.backgroundColor]="'#'+element.c_color"  > {{element.c_nombre_producto}}  {{element.c_detalle_primario_producto}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="c_descripcion_producto">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Descripcion - Dolar - IGV </th>
+                            <td mat-cell *matCellDef="let element" [style.backgroundColor]="'#'+element.c_color"> {{element.c_descripcion_producto}} - <span *ngIf="element.b_dolar_producto===1">DOLAR</span> <span *ngIf="element.b_dolar_producto===0">SOLES</span>- <span *ngIf="element.b_igv_producto===1">PRECIO CON IGV</span> <span *ngIf="element.b_igv_producto===0">PRECIO SIN IGV</span> - <span *ngIf="element.b_par_producto===1">PAR</span>  </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="f_precio_producto">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Cantidad-Precio </th>
+                            <td mat-cell *matCellDef="let element" [style.backgroundColor]="'#'+element.c_color"> {{element.n_cantidad_viene_producto}} - {{element.n_precio_por_cantidad_viene_producto}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="c_nombre_tipo_medida">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Tipo Medida </th>
+                            <td mat-cell *matCellDef="let element" [style.backgroundColor]="'#'+element.c_color"> {{element.c_nombre_tipo_medida}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="c_nombre_grupo">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Grupo </th>
+                            <td mat-cell *matCellDef="let element" [style.backgroundColor]="'#'+element.c_color"> {{element.c_nombre_grupo}} </td>
+                        </ng-container>
+
+
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                        <ng-template let-row matRowDef cdkVirtualFor [matRowDefColumns]="displayedColumns">
+                            <tr mat-row></tr>
+                        </ng-template>
+
+                    </table>
+                    <mat-paginator [pageSizeOptions]="[500]" showFirstLastButtons></mat-paginator>
+                </section>
+            </div>  
+        </mat-card>
+    </div>
+</app-inicio>
+<!-- <ngx-spinner type="ball-spin-clockwise" [fullScreen] = "false" color = "#fff"><p style="color: white" > Cargando... </p></ngx-spinner> -->

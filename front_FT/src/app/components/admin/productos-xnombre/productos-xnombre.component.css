@@ -1,0 +1,39 @@
+.contenedorBody {
+    margin: 1%;
+} 
+table{
+    width: 100%;
+}
+.container_filters{
+  padding-bottom: 2%;
+}
+.field_filter{
+  width: 30%;
+  margin-right: 2%;
+}
+.mat-column-c_nombre_producto{
+  width: 40%;
+}
+.mat-column-c_descripcion_producto{
+  width: 20%;
+}
+.mat-column-f_precio_producto{
+  width: 5%;
+}
+.mat-column-c_nombre_tipo_medida{
+  width: 15%;
+}
+.mat-column-c_nombre_grupo{
+  width: 20%;
+}
+td.mat-footer-cell:last-of-type, td.mat-cell:last-of-type, th.mat-header-cell:last-of-type{
+  padding-right: 6px;
+}
+
+td.mat-cell:first-of-type, td.mat-footer-cell:first-of-type, th.mat-header-cell:first-of-type{
+  padding-left: 6px;
+}
+.example-container {
+  max-height: 70vh;
+  overflow: auto;
+}

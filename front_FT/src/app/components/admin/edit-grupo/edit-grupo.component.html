@@ -1,0 +1,40 @@
+<h2 mat-dialog-title>Edición {{grupo.c_nombre_grupo}}</h2>
+<br>
+<div class="body">
+  <form class="example-container" #newForm="ngForm" (ngSubmit)="guardar()">
+    <div mat-dialog-content class="contenedor">
+
+      <mat-form-field style="width: 100%;">
+        <input matInput placeholder="Nombre" name="c_nombre_grupo" #c_nombre_grupo="ngModel"
+          [(ngModel)]="grupo.c_nombre_grupo" maxlength="250" minlength="3" required />
+        <!-- <mat-hint class="error" *ngIf="tipoMedida.c_nombre_tipo_medidas.length<3">debe tener mínimo de 3 dígitos</mat-hint> -->
+      </mat-form-field>
+
+      <mat-form-field style="width: 100%;">
+        <input matInput placeholder="Descripción" name="c_descripcion_grupo" #c_descripcion_grupo="ngModel"
+          [(ngModel)]="grupo.c_descripcion_grupo" maxlength="250" minlength="3" required />
+        <!-- <mat-hint class="error" *ngIf="tipoMedida.c_descripcion_tipo_medida.length<3">debe tener mínimo de 3 dígitos</mat-hint> -->
+      </mat-form-field>
+      <div style="padding: 3px;">
+        <label>Imagen</label>
+        <input id="file" #fileInput accept="image/*" hidden type='file' (change)="uploadfile($event)">
+        <button type="button" mat-mini-fab color="accent" (click)="fileInput.value='';fileInput.click()"
+          style="margin-left: 10px;">
+          <mat-icon>cloud_upload</mat-icon>
+        </button>
+      </div>
+
+    </div>
+    <div mat-dialog-actions>
+
+      <button button mat-stroked-button color="primary" type="submit"  [disabled]="!newForm.form.valid">
+        <mat-icon>save</mat-icon>
+        <span>Guardar</span>
+      </button>
+      <button button mat-stroked-button color="error" type="button" style="margin-left: 8px;" (click)="cerrar()">
+        <mat-icon>close</mat-icon>
+        <span style="margin-left: 4px;">Cerrar</span>
+      </button>
+    </div>
+  </form>
+</div>

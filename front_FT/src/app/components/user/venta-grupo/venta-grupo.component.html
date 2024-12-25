@@ -1,0 +1,24 @@
+<app-inicio>
+    <div class="contenedorBody">
+        <h2>VENTA - SELECCIONE EL GRUPO</h2>
+        <mat-card>
+            <mat-form-field class="filter_grupo">
+                <input class="input_grupo" matInput placeholder="Buscar" (keyup)="applyFilter($event)">
+                <mat-icon matSuffix>search</mat-icon>
+            </mat-form-field>
+            <div class="container_grupos">
+                <div *ngFor="let g of listado_grupo">
+                    <mat-card (click)="irAProductos(g)" class="card_grupo">
+                        <mat-card-header>
+                            <div mat-card-avatar class="n_orden">{{g.n_orden}}</div>
+                            <mat-card-title>{{g.c_nombre_grupo}}</mat-card-title>
+                            <mat-card-subtitle class="descripcion_grupo">{{g.c_descripcion_grupo}}</mat-card-subtitle>
+                        </mat-card-header>
+                        <img *ngIf="g.c_ruta_img!=null && g.c_ruta_img!=''" mat-card-image
+                            [src]="rutaBackendArchivo + g.c_ruta_img" alt="Grupo" class="img_grupo">
+                    </mat-card>
+                </div>
+            </div>
+        </mat-card>
+    </div>
+</app-inicio>

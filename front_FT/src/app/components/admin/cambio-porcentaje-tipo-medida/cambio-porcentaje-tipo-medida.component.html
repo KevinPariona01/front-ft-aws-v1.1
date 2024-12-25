@@ -1,0 +1,78 @@
+<app-inicio>
+    <div class="contenedorBody" >
+        <h2> CAMBIAR PRECIOS POR GRUPO Y TIPO DE MEDIDA</h2>
+        <mat-card>
+            <div class="container_filters" >
+                <mat-form-field  class="field_filter">
+                    <mat-label>Grupo</mat-label>
+                    <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto" >
+                    <button color="basic" matSuffix mat-button  (click)="clearCampo()">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+                    <mat-option *ngFor="let lista_grupos of filteredOptions | async" [value]="lista_grupos" (click)="seleccionarGrupo(lista_grupos.n_id_grupo)" >
+                        {{lista_grupos.c_nombre_grupo}}
+                    </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+                <mat-form-field style="width: 30%;;">
+                    <mat-select placeholder="Distribución de la medida">
+                      <mat-option *ngFor="let p of lista_medidas" [value]="p.n_id_distribucion_tipo_medida"
+                        (click)='seleccionarTipoMedida(p.n_id_distribucion_tipo_medida)'>
+                        {{p.c_nombre_distribucion_tipo_medida}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+            </div>
+        <table mat-table [dataSource]="tablaProductos" matSort class="mat-elevation-z8">
+
+            <ng-container matColumnDef="c_nombre_producto">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Producto </th>
+                <td mat-cell *matCellDef="let element"> {{element.c_nombre_producto}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="c_detalle_primario_producto">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Detalle </th>
+                <td mat-cell *matCellDef="let element"> {{element.c_detalle_primario_producto}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="c_nombre_distribucion_tipo_medida">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Distribución </th>
+                <td mat-cell *matCellDef="let element"> {{element.c_nombre_distribucion_tipo_medida}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="f_valor_porcentaje">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Porcentaje </th>
+                <td mat-cell *matCellDef="let element"> 
+                    <input matInput type="number" class="input"
+                         [(ngModel)]="element.f_valor_porcentaje" (blur)="editarPorcentaje(element)"
+                             />
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="f_valor_venta">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Venta </th>
+                <td mat-cell *matCellDef="let element"> {{element.f_valor_venta}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="f_precio_estatico">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Precio estático </th>
+                <td mat-cell *matCellDef="let element"> 
+                    <input matInput type="number" class="input"
+                         [(ngModel)]="element.f_precio_estatico" (blur)="editarPrecioEstatico(element)"
+                             />
+                 </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <ng-template let-row matRowDef cdkVirtualFor [matRowDefColumns]="displayedColumns">
+            <tr mat-row></tr>
+
+            </ng-template>
+
+        </table>
+        <mat-paginator [pageSizeOptions]="pagin" showFirstLastButtons></mat-paginator>
+        </mat-card>
+    </div>
+</app-inicio>
+<!-- <ngx-spinner type="ball-spin-clockwise" [fullScreen] = "false" color = "#fff"><p style="color: white" > Cargando... </p></ngx-spinner> -->

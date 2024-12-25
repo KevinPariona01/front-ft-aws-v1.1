@@ -1,0 +1,51 @@
+<h2 mat-dialog-title>Edición</h2>
+<br>
+<div class="body">
+        <div class="contenedorBody" >
+            <h2> CAMBIAR A LOS SELECCIONADOS</h2>
+            <mat-card>
+            <table mat-table [dataSource]="tablaGrupos" matSort class="mat-elevation-z8">
+    
+                <ng-container matColumnDef="c_nombre_grupo">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
+                    <td mat-cell *matCellDef="let element"> {{element.c_nombre_grupo}} </td>
+                </ng-container>
+    
+                <ng-container matColumnDef="c_nombre_distribucion_tipo_medida">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Distribucion </th>
+                    <td mat-cell *matCellDef="let element"> {{element.c_nombre_distribucion_tipo_medida}} </td>
+                </ng-container>
+    
+                <ng-container matColumnDef="f_valor_porcentaje">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Porcentaje </th>
+                    <td mat-cell *matCellDef="let element"> 
+                        <input class="input"  matInput type="number"  [(ngModel)]="element.f_valor_porcentaje" />
+                        &nbsp;
+                        <button mat-mini-fab color="basic" matSuffix [ngClass]="{'varios':element.hay_valores_diferentes, 'no_varios':!element.hay_valores_diferentes }" (click)="CambiarPorcentajeGrupal(element)"  >
+                            <mat-icon>update</mat-icon>
+                        </button>
+                     </td>
+                </ng-container>
+    
+                <ng-container matColumnDef="f_valor_porcentaje_max">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Mayor Porcentaje </th>
+                    <td mat-cell *matCellDef="let element"> {{element.f_valor_porcentaje_max}} </td>
+                </ng-container>
+    
+                <ng-container matColumnDef="f_valor_porcentaje_min">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Menor Porcentaje </th>
+                    <td mat-cell *matCellDef="let element"> {{element.f_valor_porcentaje_min}} </td>
+                </ng-container>
+    
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <ng-template let-row matRowDef cdkVirtualFor [matRowDefColumns]="displayedColumns">
+                <tr mat-row></tr>
+    
+                </ng-template>
+    
+            </table>
+            <mat-paginator [pageSizeOptions]="pagin" showFirstLastButtons></mat-paginator>
+            </mat-card>
+        </div>
+    <!-- <ngx-spinner type="ball-spin-clockwise" [fullScreen] = "false" color = "#fff"><p style="color: white" > Cargando... </p></ngx-spinner> -->
+</div>
