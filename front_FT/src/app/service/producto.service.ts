@@ -170,5 +170,19 @@ export class ProductoService {
     });
     return this._http.post(this.url + 'producto/saveStockTmp', request, { headers: reqHeader });
   } 
+  getProductByTipoMedidaDistribucion(request:any,token:any): Observable<any> {
+    var reqHeader = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token
+    });
+    return this._http.post(this.url + 'producto/getProductByTipoMedidaDistribucion', request, { headers: reqHeader });
+  }
+  updatePorcentajeDistribucionProductoEstaticoOrPorcentaje(request:any,token:any): Observable<any> {
+    var reqHeader = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token
+    });
+    return this._http.post(this.url + 'producto/updatePorcentajeDistribucionProductoEstaticoOrPorcentaje', request, { headers: reqHeader });
+  }
 
 }

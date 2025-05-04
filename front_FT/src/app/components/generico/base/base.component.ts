@@ -10,6 +10,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class BaseComponent implements OnInit {
 
+  readonly ESTATICO = 'ESTATICO';
+  readonly PORCENTAJE = 'PORCENTAJE';
+
   constructor(
     public snackBar: MatSnackBar,) { }
 

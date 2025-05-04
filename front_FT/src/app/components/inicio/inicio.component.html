@@ -57,8 +57,13 @@
                         <mat-icon>keyboard_arrow_right</mat-icon>
                         <span>BUSCAR PRODUCTOS POR NOMBRE</span>
                     </a>
-                    <a mat-list-item [routerLink]="['/pedidoProducto']" (click)="panel(1,10)"
+                    <a mat-list-item [routerLink]="['/cambiarPrecioTabla']" (click)="panel(1,10)"
                         [ngClass]="{'select':iditem == 10}">
+                        <mat-icon>keyboard_arrow_right</mat-icon>
+                        <span>CAMBIAR PRECIOS EN TABLA</span>
+                    </a>
+                    <a mat-list-item [routerLink]="['/pedidoProducto']" (click)="panel(1,11)"
+                        [ngClass]="{'select':iditem == 11}">
                         <mat-icon>keyboard_arrow_right</mat-icon>
                         <span>PEDIDO</span>
                     </a>

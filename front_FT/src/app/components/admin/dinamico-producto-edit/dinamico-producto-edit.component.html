@@ -1,0 +1,63 @@
+<app-inicio>
+    <div class="contenedorBody">
+        <div class="cabecera-interna" >
+            <h2>ADMINISTRACIÓN DE PRECIO DE PRODUCTOS MASIVO</h2>
+            <mat-card>
+                <mat-form-field  class="field_filter">
+                    <mat-label>Grupo</mat-label>
+                    <input type="text" matInput [formControl]="myControlProducto" [matAutocomplete]="autoProducto" >
+                    <button color="basic" matSuffix mat-button  (click)="clearCampoProducto()">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                    <mat-autocomplete #autoProducto="matAutocomplete" [displayWith]="displayProducto">
+                    <mat-option *ngFor="let lista_grupos of filteredOptionsProducto | async" [value]="lista_grupos" (click)="seleccionarGrupo(lista_grupos.n_id_grupo)" >
+                        {{lista_grupos.c_nombre_grupo}}
+                    </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+                <mat-form-field  class="field_filter">
+                    <mat-label>Tipo de Medida</mat-label>
+                    <input type="text" matInput [formControl]="myControlTipoMedida" [matAutocomplete]="autoTipoMedida" >
+                    <button color="basic" matSuffix mat-button  (click)="clearCampoTipoMedida()">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                    <mat-autocomplete #autoTipoMedida="matAutocomplete" [displayWith]="displayTipoMedida">
+                    <mat-option *ngFor="let lista_medida of filteredOptionsTipoMedida | async" [value]="lista_medida" (click)="seleccionarTipoMedida(lista_medida.n_id_tipo_medida)" >
+                        {{lista_medida.c_nombre_tipo_medida}}
+                    </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+                <mat-card-actions align="end" >
+                    <button [disabled]="this.n_id_tipo_medida == null || this.n_id_grupo === null" mat-raised-button (click)="search()" >Buscar</button>
+                </mat-card-actions>
+            </mat-card>    
+        </div> 
+        <div class="tabla-card">
+            <div class="tabla-scroll">
+            <table class="tabla-productos">
+                <thead>
+                <tr>
+                    <th *ngFor="let header of cabecera">{{ header.nombre }}</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let row of table">
+                        <ng-container *ngFor="let col of row.slice(1); let i = index">
+                          <td *ngIf="i < 1">{{ col }}</td>
+                          <td *ngIf="i >= 1">
+                            <input 
+                            type="number" 
+                            [value]="col"  
+                            (change)="onInputChange(row[0], $event, cabecera[i])"
+                            [disabled]="(i) % 3 === 0"
+                            />
+                          </td>
+                        </ng-container>
+                      </tr>                                           
+                </tbody>
+            </table>
+            </div>
+        </div>      
+    </div>
+  </app-inicio>
+  

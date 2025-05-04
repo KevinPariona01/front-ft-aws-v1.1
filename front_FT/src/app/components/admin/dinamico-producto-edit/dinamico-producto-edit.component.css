@@ -1,0 +1,126 @@
+/* Estilo general */
+.contenedorBody {
+  padding-left: 2%;
+  padding-right: 2%;
+  height: calc(100vh - 64px);
+  overflow: hidden;
+}
+
+.tabla-card {
+  height: calc(100vh - 200px);
+  overflow: hidden;
+}
+
+.tabla-productos {
+  border-collapse: collapse;
+  min-width: 1000px;
+  width: max-content;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 14px;
+}
+
+.cabecera-interna {
+  height: 200px;
+}
+
+/* Cabeceras tipo Excel */
+.tabla-productos th {
+  background-color: #C2185B;
+  color: white;
+  font-weight: bold;
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #C2185B;
+  position: sticky;
+  top: 0;
+  z-index: 5; /* Asegura que la cabecera esté por encima de las columnas */
+  white-space: nowrap;
+}
+
+/* Celdas */
+.tabla-productos td {
+  border: 1px solid #C2185B;
+  padding: 8px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* Hacer las primeras dos columnas estáticas */
+.tabla-productos td:first-child,
+.tabla-productos th:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 4; /* Asegura que las columnas estén por debajo de la cabecera */
+}
+
+
+/* Asegurarse de que la cabecera se mantenga sobre las columnas fijas */
+.tabla-productos th:first-child {
+  z-index: 6; /* Asegura que las cabeceras de las columnas 1 y 2 se muestren sobre el contenido */
+  background-color: #C2185B; /* Fondo de la cabecera */
+}
+
+/* Zebra stripes como Excel */
+.tabla-productos tbody tr:nth-child(even) {
+  background-color: #fce4ec; /* tono muy suave del rosa */
+}
+
+/* Efecto hover */
+.tabla-productos td:hover {
+  background-color: #f8bbd0; /* rosado claro */
+}
+
+/* Input editable tipo Excel */
+.tabla-productos input {
+  padding: 6px;
+  border: 0px solid #c2185b00;
+  border-radius: 4px;
+  text-align: center;
+  /* font-size: 13px; */
+  background-color: #ffffff00;
+  font-style: italic;
+  font-weight: 900;
+  /* transition: border-color 0.2s ease;*/
+}
+
+.tabla-productos input:focus {
+  outline: none;
+}
+
+/* Contenedor de tabla con scroll */
+.tabla-scroll {
+  height: calc(100vh - 264px);
+  overflow-y: auto;
+  width: 100%;
+  overflow-x: auto;
+}
+
+.field_filter{
+  width: 30%;
+  margin-right: 2%;
+}
+
+/* Agregar diferentes tonos a las celdas después de las dos primeras columnas */
+/* Primer color para cada 3er, 6to, 9no, 12vo, etc. */
+/* Primer color para la primera columna (1er index) */
+.tabla-productos td:nth-child(1) {
+background-color: #d2d2d2; /* Primer color */
+}
+
+/* Segundo color para la segunda columna (2do index) */
+
+
+
+/* Primer color para cada 3er, 6to, 9no, 12vo, etc. */
+.tabla-productos td:nth-child(3n+2):not(:first-child):not(:nth-child(1)) {
+background-color: #58afb8; /* Primer color */
+}
+
+/* Segundo color para 4to, 7mo, 10mo, 13vo, etc. */
+.tabla-productos td:nth-child(3n+3):not(:first-child):not(:nth-child(1)) {
+background-color: #269199; /* Segundo color */
+}
+
+/* .tabla-productos td:nth-child(3n+4):not(:first-child):not(:nth-child(1)) {
+background-color: #ec225e; 
+} */

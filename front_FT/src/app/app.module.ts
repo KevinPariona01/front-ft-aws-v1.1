@@ -56,6 +56,7 @@ import { ProductosXNombreComponent } from './components/admin/productos-xnombre/
 import { FormCredentialComponent } from './components/security/form-credential/form-credential.component';
 import { HomeComponent } from './components/inicio/home/home.component';
 import { PedidoComponent } from './components/admin/pedido/pedido.component';
+import { DinamicoProductoEditComponent } from './components/admin/dinamico-producto-edit/dinamico-producto-edit.component';
 
 
 
@@ -89,6 +90,7 @@ import { PedidoComponent } from './components/admin/pedido/pedido.component';
     FormCredentialComponent,
     HomeComponent,
     PedidoComponent,
+    DinamicoProductoEditComponent,
   ],
   imports: [
     BrowserModule,

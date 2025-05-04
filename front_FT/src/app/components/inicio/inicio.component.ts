@@ -1,12 +1,11 @@
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { BreakpointObserver } from '@angular/cdk/layout';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Observable, map } from 'rxjs';
-import { ConstantesService } from 'src/app/service/constantes.service';
-import { VentaMomentoComponent } from '../user/venta-momento/venta-momento.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSidenav } from '@angular/material/sidenav';
+import { ConstantesService } from 'src/app/service/constantes.service';
 import { SecurityService } from 'src/app/service/security.service';
 import { FormCredentialComponent } from '../security/form-credential/form-credential.component';
+import { VentaMomentoComponent } from '../user/venta-momento/venta-momento.component';
 
 @Component({
   selector: 'app-inicio',
@@ -22,7 +21,6 @@ export class InicioComponent implements OnInit {
   date!: Date;
 
   constructor(
-    private breakpointObserver: BreakpointObserver,
     private constantesService: ConstantesService,
     public securityService: SecurityService,
     public dialog: MatDialog

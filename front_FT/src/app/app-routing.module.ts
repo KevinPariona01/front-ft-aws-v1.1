@@ -15,6 +15,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { HomeComponent } from './components/inicio/home/home.component';
 import { ProveedorComponent } from './components/admin/proveedor/proveedor.component';
 import { PedidoComponent } from './components/admin/pedido/pedido.component';
+import { DinamicoProductoEditComponent } from './components/admin/dinamico-producto-edit/dinamico-producto-edit.component';
 
 const routes: Routes = [
   {path:'inicio', component:HomeComponent},
@@ -28,6 +29,7 @@ const routes: Routes = [
   {path:'cambioProductoTipoUnidad', component:CambioPorcentajeTipoMedidaComponent, canActivate: [AuthGuard]},
   {path:'constantes', component:ConstantesComponent, canActivate: [AuthGuard]},
   {path:'pedidoProducto', component:PedidoComponent, canActivate: [AuthGuard]},
+  {path:'cambiarPrecioTabla', component:DinamicoProductoEditComponent, canActivate: [AuthGuard]},
   {path:'venta-grupo', component:VentaGrupoComponent},
   {path:'venta-producto/:id', component:VentaProductoComponent},
   {path:'**', component:HomeComponent},
