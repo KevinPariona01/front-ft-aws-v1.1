@@ -3,6 +3,8 @@
         <h2> ADMINISTRACIÓN DE PRODUCTO</h2>
         <mat-card>
             <div class="container_filters" >
+                <canvas #barcodeCanvas style="display:none"></canvas>
+
                 <mat-form-field class="field_filter" >
                     <input matInput placeholder="Buscar" (keyup)="applyFilter($event)">
                     <mat-icon matSuffix>search</mat-icon>
@@ -20,6 +22,7 @@
                     </mat-autocomplete>
                 </mat-form-field>
                 <mat-card-actions align="end" >
+                    <button [disabled]="!tablaProducto || tablaProducto.data.length === 0" mat-raised-button (click)="exportarPdf()" >Exportar barras</button>
                     <button [disabled]="lista_productos_seleccionado.length===0" mat-raised-button (click)="cambiarPorcentajeSeleccionado()" >Cambiar porcentaje con seleccionado</button>
                     <button [disabled]="!tablaProducto || tablaProducto.data.length === 0" mat-raised-button (click)="getProductoExportar()" >Exportar</button>
                 </mat-card-actions>

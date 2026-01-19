@@ -1,0 +1,80 @@
+<app-inicio>
+    <div class="contenedorBody" >
+        <h2> ADMINISTRACIÓN DE PRODUCTO</h2>
+        <mat-card>
+            <div class="container_filters" >
+                                <!-- Código de barras -->
+<!-- <svg #barcode></svg> -->
+
+<!-- Input para el scanner -->
+<!-- <input
+  #scannerInput
+  type="text"
+  (keydown.enter)="onEnter(scannerInput)"
+  style="position:absolute; left:-1000px;"
+> -->
+                <mat-form-field class="field_filter">
+                    <input
+                        matInput
+                        #searchInput
+                        placeholder="Buscar"
+                        (keydown.enter)="onEnter(searchInput)"
+                    >
+                    <mat-icon matSuffix>search</mat-icon>
+                </mat-form-field>
+                <span ><button  class="titlle_venta"  mat-button >Total de Venta S/ {{total}}</button></span> 
+                <button mat-raised-button color="warn" (click)="borrarVenta()" >Borrar Venta Total</button>
+            </div>
+            <div class="panel-central" >
+                <div class="panel-productos">
+                    <div class="container-producto-venta" *ngFor="let g of listProductos">
+                        <section class="example-container mat-elevation-z8" tabindex="0">
+                            <mat-card class="example-card" appearance="outlined">
+                                <mat-card-header>
+                                    <div mat-card-avatar class="example-header-image"></div>
+                                    <mat-card-title>{{g.c_nombre_producto}}</mat-card-title>
+                                    <mat-card-subtitle>{{g.c_detalle_primario_producto}}</mat-card-subtitle>
+                                </mat-card-header>
+                                <mat-card-content>
+                                    <p>
+                                    {{g.c_descripcion_producto}}
+                                    </p>
+                                </mat-card-content>
+                                <mat-card-actions>
+                                    <button (click)="verDetalle(g)" mat-raised-button>VENDER</button>
+                                </mat-card-actions>
+                            </mat-card>
+                        </section>
+                    </div>
+                </div>
+                <div class="panel-ventas">
+                    <section class="example-container mat-elevation-z8" tabindex="0">
+                        <div class="container-producto-venta" *ngFor="let g of ventaMomentoService.producotsVenta">
+                            <mat-card class="card_grupo">
+                                <mat-card-header>
+                                <div mat-card-avatar class="example-header-image"></div>
+                                <!-- <mat-card-title>NOMBRE DEL PRODUCTO: {{g.c_nombre_producto}}</mat-card-title> -->
+                                <mat-card-title>{{g.nombre}} </mat-card-title>
+                                <mat-card-title>{{g.detalle}}</mat-card-title>
+                                <mat-card-title>{{g.repeticiones}} - {{g.cantidad}}</mat-card-title>
+                                <mat-card-title ><button class="precio_momento" mat-button>{{g.valor * g.repeticiones}}</button></mat-card-title>
+                                <mat-card-title class="repeticiones" >
+                                    Repeticiones:
+                                    &nbsp;
+                                    <input class="input" matInput type="number" [(ngModel)]="g.repeticiones" (blur)="actualizarMonto()" >
+                                </mat-card-title>
+                                </mat-card-header>
+                                <mat-card-actions>
+                                    <button mat-button color="warn" (click)="eliminarProducto(g)" ><mat-icon >delete</mat-icon>Borrar</button>
+                                </mat-card-actions>
+                                <mat-card-subtitle>
+                                    <button mat-raised-button color="accent" *ngIf="g.par" >VENTA PAR</button>
+                                </mat-card-subtitle>
+                            </mat-card>
+                        </div>
+                    </section>
+                </div>  
+            </div>
+        </mat-card>
+    </div>
+</app-inicio>

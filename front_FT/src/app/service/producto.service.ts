@@ -161,6 +161,14 @@ export class ProductoService {
         'Authorization': 'Bearer ' + token
     });
     return this._http.post(this.url + 'producto/getPedidoProducto', request, { headers: reqHeader });
+  }
+  
+  getPedidoProductoById(request:any,token:any): Observable<any> {
+    var reqHeader = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token
+    });
+    return this._http.post(this.url + 'producto/getPedidoProductoById', request, { headers: reqHeader });
   } 
   
   saveStockTmp(request:any,token:any): Observable<any> {

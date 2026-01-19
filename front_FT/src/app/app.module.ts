@@ -57,6 +57,7 @@ import { FormCredentialComponent } from './components/security/form-credential/f
 import { HomeComponent } from './components/inicio/home/home.component';
 import { PedidoComponent } from './components/admin/pedido/pedido.component';
 import { DinamicoProductoEditComponent } from './components/admin/dinamico-producto-edit/dinamico-producto-edit.component';
+import { ProductoByIdComponent } from './components/user/producto-by-id/producto-by-id.component';
 
 
 
@@ -91,6 +92,7 @@ import { DinamicoProductoEditComponent } from './components/admin/dinamico-produ
     HomeComponent,
     PedidoComponent,
     DinamicoProductoEditComponent,
+    ProductoByIdComponent,
   ],
   imports: [
     BrowserModule,

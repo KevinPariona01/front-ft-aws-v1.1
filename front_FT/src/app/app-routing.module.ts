@@ -16,6 +16,7 @@ import { HomeComponent } from './components/inicio/home/home.component';
 import { ProveedorComponent } from './components/admin/proveedor/proveedor.component';
 import { PedidoComponent } from './components/admin/pedido/pedido.component';
 import { DinamicoProductoEditComponent } from './components/admin/dinamico-producto-edit/dinamico-producto-edit.component';
+import { ProductoByIdComponent } from './components/user/producto-by-id/producto-by-id.component';
 
 const routes: Routes = [
   {path:'inicio', component:HomeComponent},
@@ -31,6 +32,7 @@ const routes: Routes = [
   {path:'pedidoProducto', component:PedidoComponent, canActivate: [AuthGuard]},
   {path:'cambiarPrecioTabla', component:DinamicoProductoEditComponent, canActivate: [AuthGuard]},
   {path:'venta-grupo', component:VentaGrupoComponent},
+  {path:'venta-producto', component:ProductoByIdComponent},
   {path:'venta-producto/:id', component:VentaProductoComponent},
   {path:'**', component:HomeComponent},
 ];

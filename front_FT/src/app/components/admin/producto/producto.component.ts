@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
@@ -13,6 +13,8 @@ import { BaseComponent } from '../../generico/base/base.component';
 import { ConfirmComponent } from '../../generico/confirm/confirm.component';
 import { CambiarPorcentajeSeleccionadoComponent } from '../cambiar-porcentaje-seleccionado/cambiar-porcentaje-seleccionado.component';
 import { EditProductoComponent } from '../edit-producto/edit-producto.component';
+import * as JsBarcode from 'jsbarcode';
+import jsPDF from 'jspdf';
 
 @Component({
   selector: 'app-producto',
@@ -32,6 +34,14 @@ export class ProductoComponent extends BaseComponent implements OnInit {
   n_id_grupo:any = null;
   
   lista_productos_seleccionado:any = [];
+  lista_productos:any = [];
+
+  @ViewChild('barcode') barcode!: ElementRef<SVGElement>;
+  @ViewChild('scannerInput') scannerInput!: ElementRef<HTMLInputElement>;
+  @ViewChild('barcodeCanvas', { static: false })
+  barcodeCanvas!: ElementRef<HTMLCanvasElement>;
+  
+
 
 
   constructor(
@@ -48,6 +58,105 @@ export class ProductoComponent extends BaseComponent implements OnInit {
     this.getGrupo();
     
   }
+
+  generarBarcode(codigo: string): string {
+  const canvas = this.barcodeCanvas.nativeElement;
+
+  JsBarcode(canvas, codigo, {
+    format: 'CODE128',
+    width: 2,
+    height: 60,
+    displayValue: true,
+    fontSize: 14,
+    margin: 5
+  });
+
+  return canvas.toDataURL('image/png');
+}
+
+public exportarPdf() {
+  const pdf = new jsPDF('p', 'mm', 'a4');
+
+  // 📄 Página
+  const pageWidth = 210;
+
+  // 📐 Celda
+  const cellWidth = 40;
+  const cellHeight = 34;
+
+  // 🏷️ Código de barras
+  const barcodeWidth = 36;
+  const barcodeHeight = 18;
+
+  // 🔢 Grid
+  const cols = 5;
+  const rows = 9;
+
+  // 📏 Centramos la grilla
+  const gridWidth = cellWidth * cols;
+  const startX = (pageWidth - gridWidth) / 2;
+  const startY = 10;
+
+  let x = startX;
+  let y = startY;
+
+  this.lista_productos.forEach((prod: any, index: number) => {
+    const img = this.generarBarcode(prod.c_codigo_producto);
+
+    // 🟦 Borde de la celda
+    pdf.rect(x, y, cellWidth, cellHeight);
+
+    // 📌 Barcode centrado
+    const imgX = x + (cellWidth - barcodeWidth) / 2;
+    const imgY = y + 4;
+    pdf.addImage(img, 'PNG', imgX, imgY, barcodeWidth, barcodeHeight);
+
+    // 📝 Textos
+    pdf.setFontSize(8);
+    pdf.text(
+      prod.c_nombre_producto ?? '',
+      x + cellWidth / 2,
+      y + cellHeight - 8,
+      {
+        align: 'center',
+        maxWidth: cellWidth - 4
+      }
+    );
+
+    pdf.setFontSize(7);
+    pdf.text(
+      prod.c_detalle_primario_producto ?? '',
+      x + cellWidth / 2,
+      y + cellHeight - 4,
+      {
+        align: 'center',
+        maxWidth: cellWidth - 4
+      }
+    );
+
+    // ➡️ Siguiente columna
+    x += cellWidth;
+
+    // ⬇️ Nueva fila
+    if ((index + 1) % cols === 0) {
+      x = startX;
+      y += cellHeight;
+    }
+
+    // 📄 Nueva página
+    if (
+      (index + 1) % (cols * rows) === 0 &&
+      index + 1 < this.lista_productos.length
+    ) {
+      pdf.addPage();
+      x = startX;
+      y = startY;
+    }
+  });
+
+  pdf.save('codigos-de-barras.pdf');
+}
+
 
   displayFn(user: any): string {
     return user && user.c_nombre_grupo ? user.c_nombre_grupo : '';
@@ -96,6 +205,7 @@ export class ProductoComponent extends BaseComponent implements OnInit {
       if(res.status){
         this.tablaProducto = new MatTableDataSource<any>(res.body.response1);
         this.tablaProducto.paginator = this.paginator;
+        this.lista_productos = res.body.response1;
         
       }else{
         this.openSnackBar("OCURRIO ALGO", 2500);

@@ -13,7 +13,7 @@
       <div mat-dialog-content >
         <div class="contenedor">
           <mat-form-field style="flex: 1; margin-right: 1%" >
-            <input matInput placeholder="Código" name="c_codigo_producto" #c_codigo_producto="ngModel"
+            <input matInput placeholder="Código" name="c_codigo_producto" #c_codigo_producto="ngModel" [disabled]="true"
               [(ngModel)]="producto.c_codigo_producto" maxlength="32" minlength="2"/>
           </mat-form-field>
           <mat-form-field style="flex: 1; margin-right: 1%" >

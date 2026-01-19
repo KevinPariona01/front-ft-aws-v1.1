@@ -20,11 +20,14 @@
     "@angular/platform-browser": "^14.2.0",
     "@angular/platform-browser-dynamic": "^14.2.0",
     "@angular/router": "^14.2.0",
+    "exceljs": "^4.3.0",
+    "file-saver": "^2.0.5",
+    "jsbarcode": "^3.12.1",
+    "jspdf": "^4.0.0",
+    "ngx-barcode": "^0.3.0",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
-    "zone.js": "~0.11.4",
-    "exceljs": "^4.3.0",
-    "file-saver": "^2.0.5"
+    "zone.js": "~0.11.4"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^14.2.12",

@@ -80,6 +80,11 @@
                         <mat-icon>keyboard_arrow_right</mat-icon>
                         <span>VENTA</span>
                     </a>
+                    <a mat-list-item [routerLink]="['/venta-producto']" (click)="panel(2,2)"
+                        [ngClass]="{'select':iditem == 1}">
+                        <mat-icon>keyboard_arrow_right</mat-icon>
+                        <span>SCANNER</span>
+                    </a>
                 </mat-expansion-panel>
             </mat-accordion>
         </mat-nav-list>
