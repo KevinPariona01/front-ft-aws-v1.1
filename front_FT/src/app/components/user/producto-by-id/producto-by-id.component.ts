@@ -2,7 +2,6 @@ import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ProductoService } from 'src/app/service/producto.service';
 import { BaseComponent } from '../../generico/base/base.component';
-import * as JsBarcode from 'jsbarcode';
 import { MatDialog } from '@angular/material/dialog';
 import { VentaProductoDetalleComponent } from '../venta-producto-detalle/venta-producto-detalle.component';
 import { VentaMomentoService } from 'src/app/service/venta-momento.service';
@@ -32,12 +31,12 @@ export class ProductoByIdComponent extends BaseComponent implements OnInit {
 
   ngAfterViewInit() {
       // Generar el código de barras
-      JsBarcode(this.barcode.nativeElement, 'PRD000026', {
-        format: 'CODE128',
-        width: 2,
-        height: 50,
-        displayValue: true
-      });
+      // JsBarcode(this.barcode.nativeElement, 'PRD000026', {
+      //   format: 'CODE128',
+      //   width: 2,
+      //   height: 50,
+      //   displayValue: true
+      // });
       this.enfocarInput();
     }
 
@@ -139,6 +138,12 @@ private soundError(){
     });
 }
 
+eliminarProductoLista(g:any){
+  ////console.log("producto => ", g);
+  this.listProductos = this.listProductos.filter( (r:any) => r.n_id_producto !== g.n_id_producto);
+  this.total = 0;
+  this.obtenerTotal();
+}
 
 
 eliminarProducto(g:any){

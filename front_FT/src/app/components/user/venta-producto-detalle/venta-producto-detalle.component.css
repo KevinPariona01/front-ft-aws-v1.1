@@ -48,6 +48,11 @@
   background-color: #4fe641;
   color: black;
 }
+.precioestaticoMedida{
+  font-size: 20px;
+  background-color: #e49329;
+  color: black;
+}
 .input {
   padding: 10px;
   border: 2px solid #ccc;

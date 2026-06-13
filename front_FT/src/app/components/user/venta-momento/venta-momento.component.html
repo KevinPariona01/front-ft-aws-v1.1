@@ -13,8 +13,9 @@
                     <!-- <mat-card-title>NOMBRE DEL PRODUCTO: {{g.c_nombre_producto}}</mat-card-title> -->
                     <mat-card-title>{{g.nombre}} </mat-card-title>
                     <mat-card-title>{{g.detalle}}</mat-card-title>
-                    <mat-card-title>{{g.repeticiones}} - {{g.cantidad}}</mat-card-title>
-                    <mat-card-title ><button class="precio_momento" mat-button>{{g.valor * g.repeticiones}}</button></mat-card-title>
+                    <mat-card-title><i>Cantidad de repeticiones: {{g.repeticiones}}</i></mat-card-title>
+                    <mat-card-title><i>Cantidad de productos: {{g.cantidad}}</i></mat-card-title>
+                    <mat-card-title ><button class="precio_momento" mat-button>{{(g.valor * g.repeticiones).toFixed(2)}}</button></mat-card-title>
                     <mat-card-title class="repeticiones" >
                         Repeticiones:
                         &nbsp;

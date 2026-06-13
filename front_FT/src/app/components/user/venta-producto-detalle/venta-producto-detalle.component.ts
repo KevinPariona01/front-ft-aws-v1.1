@@ -23,6 +23,9 @@ export class VentaProductoDetalleComponent extends BaseComponent  implements OnI
 
   dolar:number = 0;
   igv:number = 0;
+  valueCantidadPorMedida:number = 0;
+  valuePrecioPorMedida:number = 0;
+  getEstaticoOrPorcentaje:boolean = true;
 
   constructor(
     override snackBar: MatSnackBar,
@@ -159,7 +162,7 @@ export class VentaProductoDetalleComponent extends BaseComponent  implements OnI
       ////console.log("precio en igv => ", precioProducto);
     }
     data.map((d:any) => {
-      d.f_valor_venta = parseFloat((Math.ceil((precioProducto * d.f_distribucion_tipo_medida + precioProducto * d.f_distribucion_tipo_medida * d.f_valor_porcentaje) * 10) / 10).toFixed(2));
+      d.f_valor_venta = (Math.ceil((precioProducto * d.f_distribucion_tipo_medida + precioProducto * d.f_distribucion_tipo_medida * d.f_valor_porcentaje) * 10) / 10).toFixed(2);
 
     });
     ////console.log("datos => ", data);
@@ -202,7 +205,7 @@ export class VentaProductoDetalleComponent extends BaseComponent  implements OnI
       ////console.log("precio en igv => ", precioProducto);
     }
     data.map((d:any) => {
-      d.f_valor_venta = parseFloat((Math.ceil((precioProducto * d.f_distribucion_tipo_medida + precioProducto * d.f_distribucion_tipo_medida * d.f_valor_porcentaje) * 10) / 10).toFixed(2));
+      d.f_valor_venta = (Math.ceil((precioProducto * d.f_distribucion_tipo_medida + precioProducto * d.f_distribucion_tipo_medida * d.f_valor_porcentaje) * 10) / 10).toFixed(2);
 
     });
     ////console.log("datos => ", data);
@@ -259,6 +262,27 @@ export class VentaProductoDetalleComponent extends BaseComponent  implements OnI
     this.openSnackBar(`PRODUCTO AÑADIDO PRECIO ESTATICO A ${porcentaje.f_precio_estatico}`, 2500);
   }
 
+  obtenerProductoFijoPorCantidad(producto:any, porcentaje:any, valor:any){
+    if(porcentaje.precioPorMedida != null || porcentaje.precioPorMedida != undefined){
+      this.ventaMomentoService.id = this.ventaMomentoService.id + 1;
+      let parametro = {
+        id: this.ventaMomentoService.id,
+        nombre: producto.c_nombre_producto,
+        detalle: producto.c_detalle_primario_producto,
+        cantidad: porcentaje.cantidadPorMedida,
+        valor: porcentaje.precioPorMedida,
+        par: this.producto.b_par_producto,
+        repeticiones: 1,
+      }
+      ////console.log("producto nuevo => ", parametro);
+      this.ventaMomentoService.producotsVenta.push(parametro);
+      this.openSnackBar(`PRODUCTO AÑADIDO PRECIO ESTATICO A ${porcentaje.precioPorMedida}`, 2500);
+    }else{
+      this.openSnackBar(`INGRESE UNA CANTIDAD PARA CALCULAR EL PRECIO`, 2500);
+    }
+    
+  }
+
   obtenerProductoFijoSuma(producto:any, porcentaje:any, valor:any){
     this.ventaMomentoService.id = this.ventaMomentoService.id + 1;
     let parametro = {
@@ -277,6 +301,26 @@ export class VentaProductoDetalleComponent extends BaseComponent  implements OnI
     
   actualizarPorcentaje(){
     this.listado_precios  = this.getPrecioVentaSegunMedida(this.listado_precios);
+  }
+
+  getValueUnidadSegunMedida(producto: any) {
+    //console.log(JSON.stringify(producto));
+    
+    if (!producto.cantidadPorMedida) {
+        producto.precioPorMedida = 0;
+        return;
+    }
+
+    if(this.getEstaticoOrPorcentaje){
+      let getValorUnidad = producto.f_precio_estatico / producto.f_distribucion_tipo_medida;
+    
+      producto.precioPorMedida = (producto.cantidadPorMedida * getValorUnidad).toFixed(2);
+    }else{
+      let getValorUnidad = producto.f_valor_venta / producto.f_distribucion_tipo_medida;
+    
+      producto.precioPorMedida = (producto.cantidadPorMedida * getValorUnidad).toFixed(2);
+    }
+    
   }
 
   actualizarPrecioFijo(g:any){
